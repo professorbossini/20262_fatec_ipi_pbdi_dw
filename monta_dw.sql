@@ -1,4 +1,27 @@
 
+
+-- SELECT
+--     b.branch_code AS filial,
+--     d.month_name AS mes,
+--     SUM(f.total)::NUMERIC(12, 2) AS receita
+-- FROM dw.fact_sales f
+-- JOIN dw.dim_branch b ON b.branch_sk = f.branch_sk
+-- JOIN dw.dim_date d ON d.date_sk = f.date_sk
+-- GROUP BY ROLLUP(b.branch_code, d.month_name)
+-- HAVING b.branch_code IS NOT NULL AND d.month_name IS NOT NULL
+-- ORDER BY branch_code, d.month_name;
+
+-- SELECT
+--   b.branch_code AS filial,
+--   d.month_name AS mes,
+--   SUM(f.total)::NUMERIC(12, 2) AS receita
+-- FROM dw.fact_sales f
+-- JOIN dw.dim_branch b ON b.branch_sk = f.branch_sk
+-- JOIN dw.dim_date d ON d.date_sk = f.date_sk
+-- GROUP BY ROLLUP(b.branch_code, d.month_name)
+-- HAVING b.branch_code IS NOT NULL
+-- ORDER BY b.branch_code, d.month_name;
+
 -- SELECT
 --     d.day AS dia_do_mes,
 --     d.day_of_week AS dia_semana,
