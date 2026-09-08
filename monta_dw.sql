@@ -1,16 +1,80 @@
-SELECT
-  d.year,
-  d.month_name,
-  b.branch_code AS filial,
-  b.city,
-  COUNT(*) AS vendas,
-  SUM(f.total)::NUMERIC(12, 2) AS receita,
-  ROUND(AVG(f.total), 2) AS ticket_medio
-FROM dw.fact_sales f
-JOIN dw.dim_date d ON d.date_sk = f.date_sk
-JOIN dw.dim_branch b ON b.branch_sk = f.branch_sk
-GROUP BY d.year, d.month, d.month_name, b.branch_code, b.city
-ORDER BY d.month, filial;
+
+-- SELECT
+--     d.day AS dia_do_mes,
+--     d.day_of_week AS dia_semana,
+--     d.is_weekend AS fim_de_semana,
+--     SUM(d.day) AS contagem_dia,
+--     COUNT(*) AS vendas,
+--     SUM(f.total)::NUMERIC(12,2) AS receita,
+--     ROUND(AVG(f.rating), 2) AS avaliacao_media
+-- FROM dw.fact_sales f 
+-- JOIN dw.dim_date d ON d.date_sk = f.date_sk
+-- GROUP BY d.day, d.day_of_week, d.is_weekend
+-- ORDER BY contagem_dia DESC;
+
+
+
+-- encontrar os dias da semana mais fortes
+-- ou ja, aqueles em que a receita é mais alta
+--dia da semana
+-- se é fim de semana ou não
+--total de vendas
+--a receita
+--média de avaliação
+-- SELECT
+--   d.day AS dia_do_mes,
+--   --d.day_of_week AS dia_da_semana,
+--   --d.is_weekend AS fim_de_semana,
+--   COUNT(*) AS vendas,
+--   SUM(f.total)::NUMERIC(12,2) AS receita,
+--   ROUND(AVG(f.rating), 2) AS avaliacao_media
+-- FROM dw.fact_sales f
+-- JOIN dw.dim_date d ON d.date_sk = f.date_sk
+-- GROUP BY d.day
+-- ORDER BY dia_do_mes ASC;
+ 
+-- SELECT
+--   c.customer_type AS tipo,
+--   c.gender AS genero,
+--   COUNT(*) AS vendas,
+--   ROUND(AVG(f.total), 2) AS ticket_medio,
+--   ROUND(AVG(f.rating), 2) AS avaliacao_media,
+--   ROUND(AVG(f.quantity), 2) AS itens_medio
+-- FROM dw.fact_sales f
+-- JOIN dw.dim_customer c
+-- ON c.customer_sk = f.customer_sk
+-- GROUP BY c.customer_type, c.gender
+-- ORDER BY tipo, genero;
+
+
+
+
+-- SELECT
+--   p.product_line AS categoria,
+--   COUNT(*) AS vendas,
+--   SUM(f.quantity) AS itens_vendidos,
+--   SUM(f.total)::NUMERIC(12, 2) AS receita,
+--   SUM(f.gross_income)::NUMERIC(12, 2) AS lucro_bruto,
+--   ROUND(AVG(f.rating), 2) AS avaliacao_media
+-- FROM dw.fact_sales f
+-- JOIN dw.dim_product p
+-- ON p.product_sk = f.product_sk
+-- GROUP BY p.product_line
+-- ORDER BY lucro_bruto DESC;
+
+-- SELECT
+--   d.year,
+--   d.month_name,
+--   b.branch_code AS filial,
+--   b.city,
+--   COUNT(*) AS vendas,
+--   SUM(f.total)::NUMERIC(12, 2) AS receita,
+--   ROUND(AVG(f.total), 2) AS ticket_medio
+-- FROM dw.fact_sales f
+-- JOIN dw.dim_date d ON d.date_sk = f.date_sk
+-- JOIN dw.dim_branch b ON b.branch_sk = f.branch_sk
+-- GROUP BY d.year, d.month, d.month_name, b.branch_code, b.city
+-- ORDER BY d.month, filial;
 
 -- SELECT * FROM dw.fact_sales;
 -- INSERT INTO dw.fact_sales(
